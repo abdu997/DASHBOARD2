@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" style="background: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1)); ">
+
+<div w3-include-html="head.html"></div>
+
+<body style="background: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1)); ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Register</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <fieldset>
+                               <div class="form-group">
+                                    <input class="form-control" placeholder="First Name" name="fname" type="fname" autofocus>
+                                </div>
+                               <div class="form-group">
+                                    <input class="form-control" placeholder="Last Name" name="lname" type="lname" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" min="8" max="16" value="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" value="" id="passwords_pattern1" list="passwords_pattern1_datalist"><p><small>Must contain an uppercase and lowercase letter, number and min. 8 characters</small></p>
+                                    <input type="submit" style="color: transparent; background-color: transparent; border: 0px; padding-top: 1px;" width="0px" value="-">
+                                    <datalist id="passwords_pattern1_datalist">		          </datalist>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Repeat Password" name="repeatpassword" type="password" min="8" max="16" value="">
+  
+                                </div>
+
+                                <!-- Change this to a button or input when using this as a form -->
+                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/w3data.js"></script>
+    <script>
+w3IncludeHTML();
+    </script>
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
