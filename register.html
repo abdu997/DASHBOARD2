@@ -55,6 +55,14 @@ w3IncludeHTML();
     //Store the password field objects into variables ...
     var pass1 = document.getElementById('password');
     var pass2 = document.getElementById('rpassword');
+    var valid = false;
+    //Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number
+    var re1 = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
+    //Returns true if password matches requirements
+    if(re1.test(pass1)){
+        valid = true;
+        
+    }
     //Store the Confimation Message Object ...
     var message = document.getElementById('confirmMessage');
     //Set the colors we will be using ...
@@ -62,7 +70,7 @@ w3IncludeHTML();
     var badColor = "#ff6666";
     //Compare the values in the password field 
     //and the confirmation field
-    if(pass1.value == pass2.value){
+    if(pass1.value == pass2.value && valid){
         //The passwords match. 
         //Set the color to the good color and inform
         //the user that they have entered the correct password 
@@ -71,6 +79,7 @@ w3IncludeHTML();
         message.innerHTML = "Passwords Match!"
     }else{
         //The passwords do not match.
+        console.log('error');
         //Set the color to the bad color and
         //notify the user.
         pass2.style.backgroundColor = badColor;
