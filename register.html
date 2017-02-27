@@ -16,20 +16,20 @@
                         <form role="form">
                             <fieldset>
                                <div class="form-group">
-                                    <input class="form-control" placeholder="First Name" name="fname" type="fname" autofocus>
+                                    <input class="form-control" placeholder="First Name" name="fname" type="fname" autofocus required>
                                 </div>
                                <div class="form-group">
-                                    <input class="form-control" placeholder="Last Name" name="lname" type="lname" autofocus>
+                                    <input class="form-control" placeholder="Last Name" name="lname" type="lname" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="email"autofocus type="password" id="password">
+                                    <input class="form-control" placeholder="Password" name="email"autofocus type="password" id="password" required>
 <p><small>Must contain an uppercase and lowercase letter, number and min. 8 characters</small></p>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Repeat Password" name="email"autofocus type="password" id="rpassword" onkeyup="checkPass(); return false;">
+                                    <input class="form-control" placeholder="Repeat Password" name="email"autofocus type="password" id="rpassword" onkeyup="checkPass(); return false;" required>
                                 </div>
  
 
