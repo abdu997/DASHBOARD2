@@ -266,3 +266,12 @@ ul.alert-dropdown {
 	#calendar {
 		width: 80%;
 	}
+.msg {
+    display: none;
+}
+.error {
+    color: red;
+}
+.success {
+    color: green;
+}
