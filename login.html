@@ -4,6 +4,15 @@
 <div w3-include-html="head.html"></div>
 
 <body style="background: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1)); ">
+    <div id="fb-root"></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1137272249733687";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -21,7 +30,7 @@
                                     <input class="form-control" placeholder="Password" name="password" type="password" min="8" max="16" value="">
   
                                 </div>
-                                <a href="index.html" class="btn btn-lg btn-success btn-block" style="background-color: #3b5998"><i class="fa fa-facebook" style="font-size: 25px"></i>&nbsp; Log in With Facebook</a>
+                         <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
                                 <a href="index.html" class="btn btn-lg btn-success btn-block" style="background-color: #dd4b39"><i class="fa fa-google-plus" style="font-size: 25px"></i>&nbsp; Log in With Google</a>
                                 <a href="index.html" class="btn btn-lg btn-success btn-block" style="background-color: rgba(255,255,255, 0.4);">Login</a>
                             </fieldset>
