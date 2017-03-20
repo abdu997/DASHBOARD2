@@ -38,9 +38,12 @@ header('Location:index.php');
                                     <input class="form-control" placeholder="Password" name="password" id='pass' type="password" min="8" max="16" value="">
   
                                 </div>
+<<<<<<< Updated upstream:login.php
                          <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
                             <div class="g-signin2" data-onsuccess="onSignIn"></div>
                                 <button id = "login" class="btn btn-lg btn-success btn-block" style="background-color: rgba(255,255,255, 0.4);">Login</button>
+=======
+                            <a href="register.html">Register here</a>
                             </fieldset>
                         </form>
                     </div>
