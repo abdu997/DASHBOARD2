@@ -108,8 +108,8 @@ w3IncludeHTML();
     <script>
     // this is the id of the form
 $("#registration").submit(function(e) {
-    console.log('ajax called');
-    var url = "php/test.php"; // the script where you handle the form input.
+    
+    var url = "php/register_request.php"; // the script where you handle the form input.
 
     $.ajax({
            type: "POST",
@@ -117,7 +117,7 @@ $("#registration").submit(function(e) {
            data: $("#registration").serializeArray(), // serializes the form's elements.
            success: function(data)
            {
-               console.log(data); // show response from the php script.
+               window.location.href = 'login.html';
            }
          });
 
