@@ -4689,7 +4689,7 @@ fieldset[disabled] .navbar-default .btn-link:hover {
     color: #ccc
 }
 .navbar-inverse {
-        background: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1));
+        background: black;
     border-color: white
 }
 .navbar-inverse .navbar-brand {

@@ -6,11 +6,11 @@ header('Location:index.php');
 
 ?>
 <!DOCTYPE html>
-<html lang="en" style="background: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1)); ">
+<html lang="en">
 
 <div w3-include-html="head.html"></div>
 
-<body style="background: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1)); ">
+<body>
     
     <div id="fb-root"></div>
 <div id="fb-root"></div>
@@ -38,11 +38,12 @@ header('Location:index.php');
                                     <input class="form-control" placeholder="Password" name="password" id='pass' type="password" min="8" max="16" value="">
   
                                 </div>
-<<<<<<< Updated upstream:login.php
+
                          <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+   
                             <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                                <button id = "login" class="btn btn-lg btn-success btn-block" style="background-color: rgba(255,255,255, 0.4);">Login</button>
-=======
+                                <button id = "login" class="btn btn-lg btn-success btn-block">Login</button>
+
                             <a href="register.html">Register here</a>
                             </fieldset>
                         </form>
@@ -51,7 +52,8 @@ header('Location:index.php');
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <!--     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel">
@@ -82,8 +84,7 @@ header('Location:index.php');
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /#wrapper -->
+    </div> -->
 
     <!-- jQuery -->
     <script src="js/w3data.js"></script>

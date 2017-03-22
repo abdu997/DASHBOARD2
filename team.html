@@ -1,0 +1,50 @@
+<?php
+session_start();
+if(isset($_SESSION['name'])){
+header('Location:index.php');
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<div w3-include-html="head.html"></div>
+
+<body>
+    
+<center>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="margin-bottom:30px">Hello, #Name!</h1>
+            </div>
+        <div class="row">
+            <div class="col-md-4 square">
+                <div class="content">
+                <center>
+                    <h1><i class="fa fa-plus" style="font-size: 60px"></i></h1><br>
+                    </center>
+                                        Create a Team
+                </div>
+            </div>
+        </div>
+    </div>    
+</center>
+
+
+    <!-- jQuery -->
+    <script src="js/w3data.js"></script>
+    <script>
+w3IncludeHTML();
+    </script>
+    <script src="js/jquery.js"></script>
+    <script src='js/ajax/login_ajax.js'></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
+
+</body>
+
+</html>
