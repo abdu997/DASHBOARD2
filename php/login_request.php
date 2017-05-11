@@ -19,7 +19,7 @@ session_start();
 
 	
 
-	$sql = "SELECT username, password,first_name FROM `test`.`users` WHERE email = '$myemail'";
+	$sql = "SELECT idusers, username, password,first_name FROM `test`.`users` WHERE email = '$myemail'";
 	$result = mysqli_query($conn, $sql);
 	$count = mysqli_num_rows($result);
 	$row = $result -> fetch_row();
@@ -28,10 +28,11 @@ session_start();
 	
 
 	if($count == 1){
-		$bool = password_verify($mypassword, $row[1]);
+		$bool = password_verify($mypassword, $row[2]);
 		if($bool == true){
 			$_SESSION['user'] = $email;
-            $_SESSION['name'] = $row[2];
+            $_SESSION['user_id'] = $row[0];
+            $_SESSION['name'] = $row[3];
 			$return = 'login';
 		 
 		}

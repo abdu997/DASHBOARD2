@@ -26,8 +26,8 @@
 
 		  success: function(html){
 				if(html.indexOf("login") >= 0){
-				 
-				  window.location.href = 'index.php';
+				    console.log("team.php");
+				  window.location.href = 'team.php';
 			  }
 			  else{
 				  alert("Incorrect Username and/or Password");
