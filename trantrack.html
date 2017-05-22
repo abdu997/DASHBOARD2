@@ -33,49 +33,43 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="/action_page.php">
+                        <form onSubmit="php/transaction.php" method="post">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputName2">Type</label>
-                                        <select class="form-control">
+                                        <label>Type</label>
+                                        <select class="form-control" name="type">
                                             <option><i class="fa fa-plus" style="color: green; padding-right: 5px"></i>Debit</option>
                                             <option><i class="fa fa-minus" style="color: red; padding-right: 5px"></i>Credit</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName2">Carried Out By</label>
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                                        <label>Place/account</label>
+                                        <input type="text" class="form-control" name="place" placeholder="i.e. Walmart">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName2">Place/account</label>
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="i.e. Walmart">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputName2">Description</label>
-                                        <textarea type="text" class="form-control" rows="2"></textarea>
+                                        <label>Description</label>
+                                        <textarea type="text" class="form-control" rows="2" name="description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputName2">Date</label>
-                                        <input type="date" class="form-control">
+                                        <label>Date</label>
+                                        <input type="date" class="form-control" name="date">
                                     </div>
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="exampleInputName2">Amount</label>
+                                            <label>Amount</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">$</div>
-                                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-
+                                                <input type="text" class="form-control"  placeholder="Amount" name="amount">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputName2">Upload Receipt</label>
-                                        <input type="file" id="exampleInputFile">
+                                        <label >Upload Receipt</label>
+                                        <input type="file" name="receipt">
                                     </div>
-                                    <br>
                                     <button type="submit" class="btn btn-default">Post Transaction</button>
                                 </div>
                             </div>
@@ -90,7 +84,7 @@
                                 <tr>
                                     <th style="max-width: 20px">ID #</th>
                                     <th>Debit/Credit</th>
-                                    <th>Carried Out By</th>
+                                    <th>Person</th>
                                     <th>Place/Account</th>
                                     <th>Description</th>
                                     <th>Date</th>
@@ -110,29 +104,6 @@
                                     <td><a href="img/receipt.jpg" target="_blank">receipt_1</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td><i class="fa fa-plus" style="color: green; padding-right: 5px"></i>Debit</td>
-                                    <td>Ziad Skaik</td>
-                                    <td>Cash</td>
-                                    <td>Investment</td>
-                                    <td>2011/04/25</td>
-                                    <td>$250</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td><i class="fa fa-minus" style="color: red; padding-right: 5px"></i>Credit</td>
-                                    <td>Abdul Amoud</td>
-                                    <td>Namecheap</td>
-                                    <td>Server bill</td>
-                                    <td>2011/04/25</td>
-                                    <td>$50</td>
-                                    <td><a href="img/receipt.jpg" target="_blank">receipt_1</a>
-                                    </td>
-                                </tr>
-
-
                             </tbody>
                         </table>
                     </div>
