@@ -280,6 +280,8 @@ ul.alert-dropdown {
     position: relative;
     text-align: center;
     width: 250px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .square:after {
@@ -292,14 +294,13 @@ ul.alert-dropdown {
     position: relative;
     text-align: center;
     width: 250px;
+          color: green;
   }
 
   .content {
     position: absolute;
     width: 100px;
     height: 100px;
-    
-
     margin-top: 15%;
     margin-left: 23%;
   }

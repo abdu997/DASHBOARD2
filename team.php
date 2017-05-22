@@ -13,33 +13,6 @@ $result1 = mysqli_query($conn, $sql);
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<div w3-include-html="head.html"></div>
-
-<body>
-    
-<center>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 style="margin-bottom:30px">Hello, <?php echo $_SESSION['name']?> !</h1>
-            </div>
-        <div class="row">
-            <div class="col-md-4 square" data-toggle="modal" data-target="#myModal">
-                <div class="content">
-                <center>
-                    <h1><i class="fa fa-plus" style="font-size: 60px"></i></h1><br>
-                    </center>
-                                        Create a Team
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-</center>
-    
     <?php while($row = mysqli_fetch_assoc($result1)){ 
         $tid = $row['t_id'];
         $sql = "SELECT team_name FROM `team` WHERE team_id = '$tid'";
@@ -47,14 +20,43 @@ $result1 = mysqli_query($conn, $sql);
         $row2 = mysqli_fetch_assoc($result2);
         $teamname = $row2['team_name'];
     ?>
-            
-    
-    
     <!-- Change the div below to whatever you want the team to look like on the page. Use the echo $teamname to display the recently created team name. -->
-    <div><?php echo $teamname;  ?></div>
+    <div class="col-md-4 square">
+        <div class="content"><h1><i class="fa fa-laptop" style="font-size: 60px"></i></h1><br><?php echo $teamname;  ?></div>
+    </div>
     <?php
         }
     ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<div w3-include-html="head.html"></div>
+
+<body>
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="margin-bottom:30px">Hello, <?php echo $_SESSION['name']?> !</h1>
+            </div>
+<div class="row">
+    <div class="col-md-4 square">
+        <div class="content"><h1><i class="fa fa-laptop" style="font-size: 60px"></i></h1><br>name</div>
+    </div>
+
+<div class="col-md-4 square" data-toggle="modal" data-target="#myModal">
+                <div class="content">
+
+                    <h1><i class="fa fa-plus" style="font-size: 60px"></i></h1><br>
+                                        Create a Team
+                </div>
+            </div>
+</div>
+    </div>
+
+
     <modal>
           <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -152,3 +154,17 @@ w3IncludeHTML();
 </body>
 
 </html>
+
+<!--  
+    <div class="col-md-4 square">
+        <div class="content"><h1><i class="fa fa-laptop" style="font-size: 60px"></i></h1><br>name</div>
+    </div>
+</div>
+<div class="col-md-4 square" data-toggle="modal" data-target="#myModal">
+                <div class="content">
+
+                    <h1><i class="fa fa-plus" style="font-size: 60px"></i></h1><br>
+                                        Create a Team
+                </div>
+            </div>
+-->
