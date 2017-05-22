@@ -13,6 +13,7 @@ $result1 = mysqli_query($conn, $sql);
 
 
 ?>
+
     <?php while($row = mysqli_fetch_assoc($result1)){ 
         $tid = $row['t_id'];
         $sql = "SELECT team_name FROM `team` WHERE team_id = '$tid'";
@@ -47,10 +48,23 @@ $result1 = mysqli_query($conn, $sql);
             <div class="col-md-12">
                 <h1 style="margin-bottom:30px">Hello, <?php echo $_SESSION['name']?> !</h1>
             </div>
-<div class="row">
+        </div>
+<?php while($row = mysqli_fetch_assoc($result1)){ 
+        $tid = $row['t_id'];
+        $sql = "SELECT team_name FROM `team` WHERE team_id = '$tid'";
+        $result2 = mysqli_query($conn, $sql);
+        $row2 = mysqli_fetch_assoc($result2);
+        $teamname = $row2['team_name'];
+    ?>
+    <!-- Change the div below to whatever you want the team to look like on the page. Use the echo $teamname to display the recently created team name. -->
+        <div class="row">
     <div class="col-md-4 square">
-        <div class="content"><h1><i class="fa fa-laptop" style="font-size: 60px"></i></h1><br>name</div>
+        <div onclick="window.location.href='index.php?teamname=<?php echo $teamname;?>'" id="<?php echo $teamname;  ?>" class="content"><h1><i class="fa fa-laptop" style="font-size: 60px"></i></h1><br><?php echo $teamname;  ?></div>
     </div>
+    <?php
+        }
+    ?>
+
 
 <div class="col-md-4 square" data-toggle="modal" data-target="#myModal">
                 <div class="content">
@@ -155,6 +169,9 @@ w3IncludeHTML();
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
      <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script>
+        ('div').click()
+        </script>
     
 
 </body>

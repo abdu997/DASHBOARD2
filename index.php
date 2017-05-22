@@ -1,7 +1,17 @@
 <?php
 session_start();
+include "php/connection.php";
+
 if(!isset($_SESSION['name'])){
 header('Location: login.php');
+}
+
+if(isset($_GET['teamname'])){
+    $teamname = $_GET['teamname'];
+    $sql = "SELECT team_id FROM `team` WHERE team_name = '$teamname'";
+    $result2 = mysqli_query($conn, $sql);
+    $row2 = mysqli_fetch_assoc($result2);
+    $tid = $row2['team_id'];
 }
 
 ?>
@@ -24,7 +34,7 @@ header('Location: login.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
+                            Dashboard for <?php echo $teamname; ?> <small>Statistics Overview</small>
                         </h1>
 
                     </div>
