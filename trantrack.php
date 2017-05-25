@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "php/connection.php";
+include "php/transaction.php";
 
 if(!isset($_SESSION['name'])){
 header('Location: login.php');
@@ -25,7 +26,7 @@ if(isset($_GET['teamname'])){
 
 <body>
     <div id="wrapper">
-        <div w3-include-html="nav.html"></div>
+        <div><?php include "nav_bar.php"; ?></div>
 
         <div id="page-wrapper">
 

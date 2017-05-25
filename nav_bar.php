@@ -146,7 +146,7 @@ $name = $_SESSION['name'];
                         <a href="chat.html"><i class="fa fa-comments"></i> Chat</a>
                     </li>
                     <li>
-                        <a href="trantrack.html"><i class="fa fa-money fa-fw"></i> Transaction Tracker</a>
+                        <a href="trantrack.php"><i class="fa fa-money fa-fw"></i> Transaction Tracker</a>
                     </li>
                     <li>
                         <a href="mail.html"><i class="fa fa-envelope"></i> Mail</a>
