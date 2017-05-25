@@ -1,3 +1,20 @@
+<?php
+session_start();
+include "php/connection.php";
+
+if(!isset($_SESSION['name'])){
+header('Location: login.php');
+}
+
+if(isset($_GET['teamname'])){
+    $teamname = $_GET['teamname'];
+    $sql = "SELECT team_id FROM `team` WHERE team_name = '$teamname'";
+    $result2 = mysqli_query($conn, $sql);
+    $row2 = mysqli_fetch_assoc($result2);
+    $tid = $row2['team_id'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/r-2.1.1/datatables.min.css" />
@@ -38,37 +55,37 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Type</label>
-                                        <select class="form-control" name="type">
+                                        <select class="form-control" id="type">
                                             <option><i class="fa fa-plus" style="color: green; padding-right: 5px"></i>Debit</option>
                                             <option><i class="fa fa-minus" style="color: red; padding-right: 5px"></i>Credit</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Place/account</label>
-                                        <input type="text" class="form-control" name="place" placeholder="i.e. Walmart">
+                                        <input type="text" class="form-control" id="place" placeholder="i.e. Walmart">
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea type="text" class="form-control" rows="2" name="description"></textarea>
+                                        <textarea type="text" class="form-control" rows="2" id="description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Date</label>
-                                        <input type="date" class="form-control" name="date">
+                                        <input type="date" class="form-control" id="date">
                                     </div>
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label>Amount</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">$</div>
-                                                <input type="text" class="form-control"  placeholder="Amount" name="amount">
+                                                <input type="text" class="form-control"  placeholder="Amount" id="amount">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label >Upload Receipt</label>
-                                        <input type="file" name="receipt">
+                                        <input type="file" id="receipt">
                                     </div>
                                     <button type="submit" class="btn btn-default">Post Transaction</button>
                                 </div>

@@ -15,7 +15,7 @@ if(isset($_GET['teamname'])){
 }
 
 ?>
-
+<?php include "transactions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
     <!-- Bootstrap Core CSS -->
