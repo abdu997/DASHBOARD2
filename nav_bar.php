@@ -122,6 +122,9 @@ $name = $_SESSION['name'];
                             <a href="php/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                         <li>
+                            <a href="team.php"><i class="fa fa-fw fa-power-off"></i> Change Team</a>
+                        </li>
+                        <li>
                             <a href="register.html"><i class="fa fa-pencil-square-o"></i> Register</a>
                         </li>
                     </ul>
