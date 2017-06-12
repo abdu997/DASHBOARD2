@@ -86,4 +86,3 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 	`timestamp` datetime,
 	PRIMARY KEY( `id` )
 );
-

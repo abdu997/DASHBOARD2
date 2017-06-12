@@ -12,8 +12,11 @@ if(isset($_GET['teamname'])){
     $sql = "SELECT team_id FROM `team` WHERE team_name = '$teamname'";
     $result2 = mysqli_query($conn, $sql);
     $row2 = mysqli_fetch_assoc($result2);
-    $tid = $row2['team_id'];
+    $team_id = $row2['team_id'];
 }
+
+$tran_sql = "SELECT * FROM `test`.`transaction` WHERE `team_id` = $team_id ORDER BY `timestamp`";
+$tran_result = mysqli_query($conn, $tran_sql);
 
 ?>
 <!DOCTYPE html>
@@ -51,42 +54,42 @@ if(isset($_GET['teamname'])){
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <form onSubmit="php/transaction.php" method="post">
+                        <form onSubmit="php/transaction.php" enctype="multipart/form-data" method="post">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Type</label>
-                                        <select class="form-control" id="type">
-                                            <option><i class="fa fa-plus" style="color: green; padding-right: 5px"></i>Debit</option>
-                                            <option><i class="fa fa-minus" style="color: red; padding-right: 5px"></i>Credit</option>
+                                        <select class="form-control" id="type" name="type">
+                                            <option><i class="fa fa-plus" style="color: green; padding-right: 5px" value="Debit"></i>Debit</option>
+                                            <option><i class="fa fa-minus" style="color: red; padding-right: 5px" value="Credit"></i>Credit</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Place/account</label>
-                                        <input type="text" class="form-control" id="place" placeholder="i.e. Walmart">
+                                        <input type="text" class="form-control" id="place" name="place" placeholder="i.e. Walmart">
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea type="text" class="form-control" rows="2" id="description"></textarea>
+                                        <textarea type="text" class="form-control" rows="2" id="description" name="description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Date</label>
-                                        <input type="date" class="form-control" id="date">
+                                        <input type="date" class="form-control" id="date" name="date">
                                     </div>
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label>Amount</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">$</div>
-                                                <input type="text" class="form-control"  placeholder="Amount" id="amount">
+                                                <input type="text" class="form-control"  placeholder="Amount" id="amount" name="amount">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label >Upload Receipt</label>
-                                        <input type="file" id="receipt">
+                                        <input type="file" id="receipt" name="receipt">
                                     </div>
                                     <button type="submit" class="btn btn-default">Post Transaction</button>
                                 </div>
@@ -105,23 +108,73 @@ if(isset($_GET['teamname'])){
                                     <th>Person</th>
                                     <th>Place/Account</th>
                                     <th>Description</th>
-                                    <th>Date</th>
+                                    <th>Date (YMD)</th>
                                     <th>Amount</th>
                                     <th>Receipt</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                    $id_counter = 0;
+                                    $receipt_directory = 'uploads\\receipts\\' . ((string) $team_id);
+                                    while ($row = mysqli_fetch_assoc($tran_result)){
+                                        $id_counter = $id_counter + 1;
+                                        $type = $row['type'];
+                                        $place = $row['place'];
+                                        $desc = $row['description'];
+                                        $date = $row['date'];
+                                        if ($row['amount'] == ''){
+                                            $amount = '$0.00';
+                                        } else {
+                                          $amount = '$' . $row['amount'];
+                                        }
+                                        if ($row['receipt'] !== ''){
+                                            $receipt = $receipt_directory . '\\' .$row['receipt'];
+                                        } else {
+                                            $receipt = NULL;
+                                        }
+
+                                        $user_id = $row['user_id'];
+                                        $user_sql = "SELECT * FROM `test`.`users` WHERE `idusers` = $user_id ";
+                                        $user_result = mysqli_query($conn, $user_sql);
+                                        $user_row = mysqli_fetch_assoc($user_result);
+                                        $user_name = $user_row['first_name'] . ' ' . $user_row['last_name'];
+                                ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td><i class="fa fa-minus" style="color: red; padding-right: 5px"></i>Credit</td>
-                                    <td>Abdul Amoud</td>
-                                    <td>Namecheap</td>
-                                    <td>Server bill</td>
-                                    <td>2011/04/25</td>
-                                    <td>$50</td>
-                                    <td><a href="img/receipt.jpg" target="_blank">receipt_1</a>
-                                    </td>
+                                    <td><?php echo $id_counter ?></td>
+                                    <?php
+                                        if ($type == 'Credit'){
+                                     ?>
+                                            <td><i class="fa fa-minus" style="color: red; padding-right: 5px"></i>Credit</td>
+                                    <?php
+                                        }
+                                        else{
+                                    ?>
+                                            <td><i class="fa fa-plus" style="color: green; padding-right: 5px"></i>Debit</td>
+                                    <?php
+                                        }
+                                    ?>
+                                    <td><?php echo $user_name; ?></td>
+                                    <td><?php echo $place; ?></td>
+                                    <td><?php echo $desc; ?></td>
+                                    <td><?php echo $date; ?></td>
+                                    <td><?php echo $amount; ?></td>
+                                    <?php
+                                        if ($receipt == NULL){
+                                     ?>
+                                            <td><font color="red">No Receipt</font></td>
+                                    <?php
+                                        }
+                                        else{
+                                    ?>
+                                        <td><a href="<?php echo $receipt; ?>" target="_blank">Receipt <?php echo $id_counter; ?></a></td>
+                                    <?php
+                                        }
+                                    ?>
                                 </tr>
+                                <?php
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>
