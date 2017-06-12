@@ -61,12 +61,12 @@ $tran_result = mysqli_query($conn, $tran_sql);
                                         <label>Type</label>
                                         <select class="form-control" id="type" name="type">
                                             <option><i class="fa fa-plus" style="color: green; padding-right: 5px" value="Debit"></i>Debit</option>
-                                            <option><i class="fa fa-minus" style="color: red; padding-right: 5px" value="Credit"></i>Credit</option>
+                                            <option><i class="fa fa-minus" style="color: red; padding-right: 5px" value="Credit" required></i>Credit</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Place/account</label>
-                                        <input type="text" class="form-control" id="place" name="place" placeholder="i.e. Walmart">
+                                        <input type="text" class="form-control" id="place" name="place" placeholder="i.e. Walmart" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
@@ -76,14 +76,15 @@ $tran_result = mysqli_query($conn, $tran_sql);
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Date</label>
-                                        <input type="date" class="form-control" id="date" name="date">
+                                        <input type="date" class="form-control" id="date" name="date" required>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label>Amount</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">$</div>
-                                                <input type="text" class="form-control"  placeholder="Amount" id="amount" name="amount">
+                                                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control"  placeholder="Amount" id="amount" name="amount" required>
+
                                             </div>
                                         </div>
                                     </div>

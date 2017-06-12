@@ -43,7 +43,7 @@ $result1 = mysqli_query($conn, $sql);
     ?>
 
 
-<div class="col-md-4 square" data-toggle="modal" data-target="#myModal">
+<div class="col-md-4 square" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
                 <div class="content">
 
                     <h1><i class="fa fa-plus" style="font-size: 60px"></i></h1><br>
@@ -66,9 +66,10 @@ $result1 = mysqli_query($conn, $sql);
           <h4 class="modal-title">Build a Team</h4>
         </div>
         <div class="modal-body">
-<div class="form-group">
+            <form method="post">
+                <div class="form-group">
         <label>Team Name</label>
-<input id='t_name' class="form-control">
+<input id='t_name' class="form-control" required>
     <strong><p>NOTE: The creator of the Team will be assigned the Admin Role (you).</p></strong>
 </div>
 <div class="form-group">
@@ -86,10 +87,11 @@ $result1 = mysqli_query($conn, $sql);
 <div class="form-group">
         <label>User Member #4 E-mail</label>
 <input id='email4' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <button id="submit" type="button" class="btn btn-default">Submit</button>
 </div>
+            </form>
         </div>
         <div class="modal-footer">
-            <button id="submit" type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

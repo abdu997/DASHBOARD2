@@ -1,3 +1,24 @@
+<?php
+session_start();
+include "php/connection.php";
+include "php/transaction.php";
+
+if(!isset($_SESSION['name'])){
+header('Location: login.php');
+}
+
+if(isset($_GET['teamname'])){
+    $teamname = $_GET['teamname'];
+    $sql = "SELECT team_id FROM `team` WHERE team_name = '$teamname'";
+    $result2 = mysqli_query($conn, $sql);
+    $row2 = mysqli_fetch_assoc($result2);
+    $team_id = $row2['team_id'];
+}
+
+$tran_sql = "SELECT * FROM `test`.`transaction` WHERE `team_id` = $team_id ORDER BY `timestamp`";
+$tran_result = mysqli_query($conn, $tran_sql);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +26,7 @@
 
 <body>
 <div id="wrapper">
-<div w3-include-html="nav.html"></div>
+        <div><?php include "nav_bar.php"; ?></div>
 
         <div id="page-wrapper">
 
