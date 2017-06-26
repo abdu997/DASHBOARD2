@@ -27,175 +27,154 @@ $tran_result = mysqli_query($conn, $tran_sql);
 <body>
 <div id="wrapper">
         <div><?php include "nav_bar.php"; ?></div>
+<div id="chat" style="margin-left:50px">
+        <div class="panel-head">
+        <button id="chat-toggle">Show Chats</button>    
+    </div>
 
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Static Chat Skin
-                            <small>Subheading</small>
-                        </h1>
-
-                        </div>
-                    </div>
-
-                <!-- /.row -->
-<div class="row">
-<div class="col-md-12">
-                       <div class="chat-panel panel panel-default">
-                        <div class="panel-heading">
-                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                            <i class="fa fa-comments fa-fw"></i> Chat
-                            <div class="btn-group pull-right">
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-chevron-down"></i>
-                                </button>
-                                <ul class="dropdown-menu slidedown">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-refresh fa-fw"></i> Refresh
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-check-circle fa-fw"></i> Available
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-times fa-fw"></i> Busy
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-clock-o fa-fw"></i> Away
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-sign-out fa-fw"></i> Sign Out
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                                   <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
+    <div class="panel">
+        <div id="clist">
+            <div class="search-chat">
+                <input placeholder="Search Chatroom" style="width:200px">
+                <ul>
+                    <li class="chat"><i class="fa fa-plus"></i> Add Chatroom
+                    </li>
+                </ul>
+            </div>
+            <ul style="margin-top:80px">
+                <li class="chat">Member
                 </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
+                <li class="chat">Member</li>
             </ul>
         </div>
-                        <div class="panel-body" id="page-content-wrapper">
-                            
-
-                            <ul class="chat">
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                            </small>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="right clearfix">
-                                    <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
-                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="right clearfix">
-                                    <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
-                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- /.panel-footer -->
-                    </div>
+        <ul>
+            <li class="smessage">
+                <span class="sender">Abdul</span>
+                <span class="time">6:00pm</span>
+                <br>
+                <span class="message">Hello, how are you?</span>
+            </li>
+            <li class="smessage">
+                <span class="sender">Abdul</span>
+                <span class="time">6:00pm</span>
+                <br>
+                <span class="message">Responsive stylesheet scripting
+Brand development
+Project mapping
+Web page structuring
+Localize recurring elements
+Utilize PHP functions</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Yousef</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shut up!</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Yousef</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shujhkjt up!</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Yousef</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shuasdat up!</span>
+            </li>
+            <li class="smessage">
+                <span class="sender">Abdul</span>
+                <span class="time">6:00pm</span>
+                <br>
+                <span class="message">Hello, how are you?</span>
+            </li>
+            <li class="smessage">
+                <span class="sender">Abdul</span>
+                <span class="time">6:00pm</span>
+                <br>
+                <span class="message">Responsive stylesheet scripting
+Brand development
+Project mapping
+Web page structuring
+Localize recurring elements
+Utilize PHP functions</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Me</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shut up!</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Me</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shujhkjt up!</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Me</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shuasdat up!</span>
+            </li>
+            <li class="smessage">
+                <span class="sender">Abdul</span>
+                <span class="time">6:00pm</span>
+                <br>
+                <span class="message">Hello, how are you?</span>
+            </li>
+            <li class="smessage">
+                <span class="sender">Abdul</span>
+                <span class="time">6:00pm</span>
+                <br>
+                <span class="message">Responsive stylesheet scripting
+Brand development
+Project mapping
+Web page structuring
+Localize recurring elements
+Utilize PHP functions</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Me</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shut up!</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Me</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shujhkjt up!</span>
+            </li>
+            <li class="rmessage">
+                <span class="receiver">Me</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shuasdat up!</span>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="panel-foot">
+        <form>
+            <input class="message-input"  placeholder="Type message here...">
+        <input type="submit">
+        </form>
+    </div>
     </div>
     </div>
     <!-- /#wrapper -->
@@ -206,15 +185,15 @@ $tran_result = mysqli_query($conn, $tran_sql);
     <script>
 w3IncludeHTML();
     </script>
-    <script>
-            $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#cwrapper").toggleClass("toggled");
-    });
-    </script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        $("#chat-toggle").click(function(e) {
+            e.preventDefault();
+            $("#clist").toggleClass("chat-list");
+        });
 
+    </script>
 </body>
 
 </html>

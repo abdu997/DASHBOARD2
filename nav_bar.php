@@ -79,6 +79,9 @@ $name = $_SESSION['name'];
                         <a href="trantrack.php"><i class="fa fa-money fa-fw"></i> Transaction Tracker</a>
                     </li>
                     <li>
+                        <a href="personal-todo.php"><i class="fa fa-list-ol"></i> Personal TODO</a>
+                    </li>
+                    <li>
                         <a href="mail.php"><i class="fa fa-envelope"></i> Mail</a>
                     </li>
                 </ul>
