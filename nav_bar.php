@@ -1,5 +1,4 @@
 <?php
-
 if(!isset($_SESSION['name'])){
 header('Location: login.php');
 }
@@ -32,7 +31,7 @@ $name = $_SESSION['name'];
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Dashboard</a>
+                <a class="navbar-brand" href="index.php">Dashboard</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -68,7 +67,10 @@ $name = $_SESSION['name'];
                         <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="calendar.php"><i class="fa fa-calendar"></i> Calendar</a>
+                        <a href="calendar_user.php"><i class="fa fa-calendar"></i> Personal Calendar</a>
+                    </li>
+                    <li>
+                        <a href="calendar_team.php"><i class="fa fa-calendar"></i> Team Calendar</a>
                     </li>
                     <li>
                         <a href="chat.php"><i class="fa fa-comments"></i> Chat</a>
@@ -83,7 +85,3 @@ $name = $_SESSION['name'];
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-
-
-
- 

@@ -86,3 +86,11 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 	`timestamp` datetime,
 	PRIMARY KEY( `id` )
 );
+
+CREATE TABLE IF NOT EXISTS `calendar` (
+	`user_id` numeric(11),
+	`team_id` numeric(11),
+	`event` varchar(255),
+	`url` varchar(255),
+	PRIMARY KEY( `id` )
+);
