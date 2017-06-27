@@ -272,6 +272,9 @@ $user_id = $_SESSION['user_id'];
                     data: {
                         type: 'user'
                     },
+                    error: function() {
+                      alert('There was an error while fetching your events.')
+                    }
             },
             select: function(start, end) {
                 $('#ModalAdd #start_date').val(moment(start).format('YYYY-MM-DD'));

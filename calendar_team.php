@@ -273,14 +273,18 @@ $user_id = $_SESSION['user_id'];
                     data: {
                         type: 'user_in_team'
                     },
-                    // eventBorderColor: 'black',
-                    // eventTextColor: '#FFFFFF'
+                    error: function() {
+                      alert('There was an error while fetching your team\'s events.')
+                    }
                 },
                 {
                   url: '/php/calendar/getEvents.php',
                   type: 'GET',
                   data: {
                       type: 'team'
+                  },
+                  error: function() {
+                    alert('There was an error while fetching your personal events.')
                   }
                 }
             ],
