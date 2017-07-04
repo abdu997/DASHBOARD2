@@ -82,6 +82,15 @@ $name = $_SESSION['name'];
                         <a href="personal-todo.php"><i class="fa fa-list-ol"></i> Personal TODO</a>
                     </li>
                     <li>
+                        <a href="goals.php"><i class="fa fa-check-square-o"></i> Team Goals</a>
+                    </li>
+                    <li>
+                        <a href="maps.php"><i class="fa fa-map-marker"></i> Personal Map</a>
+                    </li>
+                    <li>
+                        <a href="maps.php"><i class="fa fa-map-marker"></i> Teams Map</a>
+                    </li>
+                    <li>
                         <a href="mail.php"><i class="fa fa-envelope"></i> Mail</a>
                     </li>
                 </ul>

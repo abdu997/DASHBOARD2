@@ -1,8 +1,6 @@
 <?php
 session_start();
 include "php/connection.php";
-include "php/transaction.php";
-
 if(!isset($_SESSION['name'])){
 listheader('Location: login.php');
 }
@@ -14,10 +12,6 @@ if(isset($_GET['teamname'])){
     $row2 = mysqli_fetch_assoc($result2);
     $team_id = $row2['team_id'];
 }
-
-$tran_sql = "SELECT * FROM `test`.`transaction` WHERE `team_id` = $team_id ORDER BY `timestamp`";
-$tran_result = mysqli_query($conn, $tran_sql);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

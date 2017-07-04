@@ -3,11 +3,28 @@ session_start();
 include dirname(__FILE__)."../../connection.php";
 $user_id = $_SESSION['user_id'];
 $team_id = $_SESSION['team_id'];
-if (isset($_GET['type'])){
-    if ($_GET['type'] == 'team'){
-        $calendar_sql="SELECT * FROM `test`.`calendar` WHERE `team_id` = $team_id";
-    } else {
-        $calendar_sql="SELECT * FROM `test`.`calendar` WHERE `user_id` = $user_id";
+
+if ($_GET['type'] == 'team'){
+    $calendar_sql="SELECT * FROM `test`.`calendar` WHERE `team_id` = $team_id";
+} else {
+    $calendar_sql="SELECT * FROM `test`.`calendar` WHERE `user_id` = $user_id";
+}
+
+$events = mysqli_query($conn, $calendar_sql);
+
+if ($events->num_rows > 0){
+  $arr = [];
+  $inc = 0;
+  while ($row = mysqli_fetch_assoc($events)){
+    if ($row['all_day']){
+      $start = $row['start_date'];
+      $end = $row['end_date'];
+      $all_day = true;
+    }
+    else {
+      $start = $row['start_date'] . 'T' . $row['start_time'];
+      $end = $row['end_date'] . 'T' . $row['end_time'];
+      $all_day = false;
     }
 
     $events = mysqli_query($conn, $calendar_sql);
