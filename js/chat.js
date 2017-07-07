@@ -17,6 +17,10 @@ app.filter('unique', function() {
 });
 
 app.controller('ChatController', function ($scope) {
+//    DO NOT INCLUDE CURRENT USER THIS SCOPE IS FOR CHATROOM CREATE FORM
+    $scope.members  = [
+        "Abdul Amoud", "Youssef El-Khalili", "Swagat Ghimire"
+    ]
     
     $scope.chatrooms = [
         {

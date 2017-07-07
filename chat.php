@@ -21,6 +21,37 @@ if(isset($_GET['teamname'])){
     <script src="js/angular.min.js"></script>
     <div w3-include-html="head.html"></div>
     <body>
+                <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Create Chatroom</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Chatroom Name:</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <p>Pick members to be added into new chatroom</p>
+                            <div class="checkbox" ng-repeat="x in members">
+                                <label>
+                                    <input type="checkbox"> {{ x }}
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-default">Create</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="wrapper">
              <div><?php include "nav_bar.php"; ?></div>
             <div id="chat" style="margin-left:50px">
@@ -32,12 +63,12 @@ if(isset($_GET['teamname'])){
                 <div class="search-chat">
                     <input placeholder="Search Chatroom" style="width:200px" ng-model="chatSearch">
                     <ul>
-                        <li class="chat"><i class="fa fa-plus"></i> Add Chatroom
+                        <li class="chat" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add Chatroom
                         </li>
                     </ul>
                 </div>
                 <div style="margin-top: 90px">
-                    <ul ng-repeat="x in chatrooms | filter: chatSearch | unique: 'chatroom_name'">
+                    <ul ng-repeat="x in chatrooms | filter: chatSearch">
                         <li ng-click='chatRoomMsgs(x.chatroom_id)' id='room' class="chat">{{x.chatroom_name}}</li>
                     </ul>
                 </div>
