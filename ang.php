@@ -22,13 +22,13 @@ if(isset($_GET['teamname'])){
     <div w3-include-html="head.html"></div>
     <body>
         <div id="wrapper">
-             <div><?php include "nav_bar.php"; ?></div>
+            <div><?php include "nav_bar.php"; ?></div>
             <div id="chat" style="margin-left:50px">
             <div class="panel-head">
-                <button id="chat-toggle">Show Chat Rooms</button> 
+                <button id="chat-toggle">Show Chats</button>    
             </div>
         <div class="panel" id="scroll">
-            <div id="clist" class='chat-list'>
+            <div id="clist">
                 <div class="search-chat">
                     <input placeholder="Search Chatroom" style="width:200px" ng-model="chatSearch">
                     <ul>
@@ -36,19 +36,27 @@ if(isset($_GET['teamname'])){
                         </li>
                     </ul>
                 </div>
-                <div style="margin-top: 90px">
+                <div style="margin-top: 80px">
                     <ul ng-repeat="x in chatrooms | filter: chatSearch | unique: 'chatroom_name'">
-                        <li ng-click='chatRoomMsgs(x.chatroom_id)' id='room' class="chat">{{x.chatroom_name}}</li>
+                        <li class="chat">{{x.chatroom_name}}</li>
                     </ul>
                 </div>
             </div>
-            <ul ng-repeat="x in chat">
+            <ul ng-repeat="x in messages">
                 <li class="{{ x.class }}">
                     <span class="{{ x.status }}">{{ x.sender }}</span>
                     <span class="time">{{ x.timestamp }}</span>
                     <br>
                     <span class="message">{{ x.message }}</span>
                 </li>
+<!--
+            <li class="rmessage">
+                <span class="receiver">Yousef</span>
+                <span class="time">8:00pm</span>
+                <br>
+                <span class="message">Shut up!</span>
+            </li>
+-->
         </ul>
     </div>
     <div class="panel-foot">
@@ -79,7 +87,7 @@ w3IncludeHTML();
     <script src="js/chat.js"></script>
     <script>
 function updateScroll(){
-    var element = document.getElementById("scroll");
+    var element = document.getElementById("yourDivID");
     element.scrollTop = element.scrollHeight;
 }
         </script>
