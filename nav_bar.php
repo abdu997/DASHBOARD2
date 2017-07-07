@@ -91,6 +91,9 @@ $name = $_SESSION['name'];
                         <a href="maps.php"><i class="fa fa-map-marker"></i> Teams Map</a>
                     </li>
                     <li>
+                        <a href="link.php"><i class="fa fa-link"></i> Link Repository</a>
+                    </li>
+                    <li>
                         <a href="mail.php"><i class="fa fa-envelope"></i> Mail</a>
                     </li>
                 </ul>
