@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "php/connection.php";
+include "php/chatroom.php";
 
 if(!isset($_SESSION['name'])){
 header('Location: login.php');
@@ -32,15 +33,15 @@ if(isset($_GET['teamname'])){
                         <h4 class="modal-title">Create Chatroom</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="php/chatroom.php" method="post">
                             <div class="form-group">
                                 <label>Chatroom Name:</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control" name="chatroom_name" required>
                             </div>
                             <p>Pick members to be added into new chatroom</p>
                             <div class="checkbox" ng-repeat="x in members">
                                 <label>
-                                    <input type="checkbox"> {{ x }}
+                                    <input type="checkbox" name="chatroom_members"> {{ x }}
                                 </label>
                             </div>
                             <button type="submit" class="btn btn-default">Create</button>

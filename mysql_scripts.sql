@@ -1,34 +1,19 @@
 CREATE TABLE `test`.`users` (
-  
 `idusers` INT NOT NULL AUTO_INCREMENT,
-  
 `username` VARCHAR(45) NOT NULL,
-  
-`email` VARCHAR(60) NOT NULL,
-  
-`password` VARCHAR(150) NOT NULL,
-  
-`first_name` VARCHAR(45) NULL,
-  
-`last_name` VARCHAR(45) NULL,
-  
+`email` VARCHAR(60) NOT NULL, 
+`password` VARCHAR(150) NOT NULL,  
+`first_name` VARCHAR(45) NULL,  
+`last_name` VARCHAR(45) NULL  
 `team` VARCHAR(45) NULL DEFAULT NULL,
  
- PRIMARY KEY (`idusers`),
-  
+PRIMARY KEY (`idusers`),  
 UNIQUE INDEX `idusers_UNIQUE` (`idusers` ASC));
-
-
-CREATE TABLE `team` (
-  
-`team_id` int(11) NOT NULL AUTO_INCREMENT,
-  
-`team_name` varchar(45) NOT NULL,
-  
-PRIMARY KEY (`team_id`),
-  
-UNIQUE KEY `team_id_UNIQUE` (`team_id`),
-  
+CREATE TABLE `team` ( 
+`team_id` int(11) NOT NULL AUTO_INCREMENT, 
+`team_name` varchar(45) NOT NULL, 
+PRIMARY KEY (`team_id`), 
+UNIQUE KEY `team_id_UNIQUE` (`team_id`), 
 UNIQUE KEY `team_name_UNIQUE` (`team_name`)
 )
 
@@ -100,4 +85,11 @@ CREATE TABLE IF NOT EXISTS `calendar` (
 	`colour` varchar(255),
 	`url` varchar(255),
 	PRIMARY KEY( `id` )
+);
+
+CREATE TABLE IF NOT EXISTS `chatrooms` (
+	`chatroom_id` int(10) NOT NULL auto_increment,
+    `team_id` numeric(11),
+	`chatroom_name` varchar(255),
+	PRIMARY KEY( `chatroom_id` )
 );
