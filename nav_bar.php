@@ -85,10 +85,10 @@ $name = $_SESSION['name'];
                         <a href="goals.php"><i class="fa fa-check-square-o"></i> Team Goals</a>
                     </li>
                     <li>
-                        <a href="maps.php"><i class="fa fa-map-marker"></i> Personal Map</a>
+                        <a href="map_user.php"><i class="fa fa-map-marker"></i> Personal Map</a>
                     </li>
                     <li>
-                        <a href="maps.php"><i class="fa fa-map-marker"></i> Teams Map</a>
+                        <a href="map_team.php"><i class="fa fa-map-marker"></i> Teams Map</a>
                     </li>
                     <li>
                         <a href="link.php"><i class="fa fa-link"></i> Link Repository</a>
