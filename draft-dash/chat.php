@@ -10,10 +10,10 @@
         <span onclick="document.getElementById('chatroom_create').style.display='none'" class="w3-button w3-display-topright" style="font-size: 20px">&times;</span>
         <div class="w3-container">
             <h4>Create Chatroom</h4>
-            <form>
+            <form id="chatroom-submit">
                 <label>Chatroom Name<span class="asterisk">*</span>
                 </label>
-                <input class="w3-input w3-border-0" type="text" required>
+                <input id="chatroomname" class="w3-input w3-border-0" type="text" required>
                 <p><small>Pick members to be added into new chatroom. You can have a chatroom for yourself without members.</small>
                 </p>
                 <div class="checkbox" ng-repeat="x in members">
@@ -188,6 +188,32 @@
         $.ajax({
             type: 'POST',
             url : '',
+            data: formData,
+            dataType: 'json',
+            success: function(data){
+                console.log(data);
+            }
+        })
+        
+    });
+    
+    
+    
+    </script>
+<script>
+    $.('#chatroom-submit').submit(function(e){
+        e.preventDefault();
+        var mems = new Array();
+        $("input:checkbox[name=chatroom_members]:checked").each(function(){
+            mems.push($(this).innerHTML);
+        });
+        formData = {
+            'chatroomname' : $('#chatroomname').val(),
+            'members': mems
+            };
+        $.ajax({
+            type: 'POST',
+            url : 'chatroom.php',
             data: formData,
             dataType: 'json',
             success: function(data){
