@@ -4,7 +4,7 @@ CREATE TABLE `test`.`users` (
 `email` VARCHAR(60) NOT NULL, 
 `password` VARCHAR(150) NOT NULL,  
 `first_name` VARCHAR(45) NULL,  
-`last_name` VARCHAR(45) NULL  
+`last_name` VARCHAR(45) NULL, 
 `team` VARCHAR(45) NULL DEFAULT NULL,
  
 PRIMARY KEY (`idusers`),  
@@ -15,7 +15,7 @@ CREATE TABLE `team` (
 PRIMARY KEY (`team_id`), 
 UNIQUE KEY `team_id_UNIQUE` (`team_id`), 
 UNIQUE KEY `team_name_UNIQUE` (`team_name`)
-)
+);
 
 
 CREATE TABLE `confirmation_users` (
@@ -45,7 +45,7 @@ CREATE TABLE `user_reset` (
 `email` varchar(150) DEFAULT NULL,
   
 PRIMARY KEY (`id`)
-)
+);
 
 CREATE TABLE `team_user` (
   
@@ -56,7 +56,7 @@ CREATE TABLE `team_user` (
 `admin` varchar(1) DEFAULT 'N',
   
 PRIMARY KEY (`t_id`,`u_id`)
-)   
+);   
 
 CREATE TABLE IF NOT EXISTS `transaction` (
 	`id` int(10) NOT NULL auto_increment,
