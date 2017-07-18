@@ -151,7 +151,7 @@
             </ul>
         </div>
         <div class="panel-foot">
-            <form>
+            <form id = "sendMsg">
                 <input class="message-input" placeholder="Type message here..." required>
                 <input type="submit">
             </form>
@@ -176,6 +176,29 @@
                 modal.style.display = "none";
             }
         }
+    </script>
+    
+    <script>
+    $.('#sendMsg').submit(function(e){
+        e.preventDefault();
+        formData = {
+            'msg' : $('.message.input').val(),
+            
+        };
+        $.ajax({
+            type: 'POST',
+            url : '',
+            data: formData,
+            dataType: 'json',
+            success: function(data){
+                console.log(data);
+            }
+        })
+        
+    });
+    
+    
+    
     </script>
 </body>
 
