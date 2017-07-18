@@ -59,6 +59,7 @@ if(isset($_GET['teamname'])){
                                     <th>Person</th>
                                     <th>Link</th>
                                     <th>Notes</th>
+                                    <th style="color: red">Delete Record</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,6 +68,7 @@ if(isset($_GET['teamname'])){
                                     <td>{{ x.user }}</td>
                                     <td><a href="{{ x.link }}" target="_blank">{{ x.link }}</a></td>
                                     <td>{{ x.notes }}</td>
+                                    <td><input type='button' value='Delete' style="background-color:red;color:white" ng-click='deletelink( x.link_id )'></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -91,6 +93,7 @@ if(isset($_GET['teamname'])){
         $(document).ready(function() {
             $('#example').DataTable();
         });
+        
     </script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>

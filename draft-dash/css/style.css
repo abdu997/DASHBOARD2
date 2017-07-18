@@ -1,0 +1,56 @@
+/*
+$font: "Raleway", sans-serif;
+$background: #f1f1f1!important;
+$tile: whitesmoke;
+$padding: 25px;
+*/
+
+html,
+body,
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Raleway", sans-serif;
+}
+
+a,
+a:link,
+a:hover,
+a:active,
+a:visited {
+    text-decoration: none;
+}
+
+a,
+a:hover, 
+a:link,
+a:hover {
+    color: #000!important;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.w3-top {
+    position: static;
+}
+
+input {
+    margin-bottom: 15px;
+}
+
+.asterisk {
+    color: red;
+    margin-left: 5px;
+    font-size: 15px;
+}
+
+.tile-bg {
+    background: white;
+    padding: 25px;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
