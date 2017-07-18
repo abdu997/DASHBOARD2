@@ -99,12 +99,5 @@ w3IncludeHTML();
     </script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script>
-        $("#chat-toggle").click(function(e) {
-            e.preventDefault();
-            $("#clist").toggleClass("chat-list");
-        });
-
-    </script>
     </body>
 </html>

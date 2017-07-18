@@ -7,6 +7,7 @@ session_start();
 $user_id = $_SESSION['user_id'];
 $tid = $_SESSION['team_id'];
 
+<<<<<<< HEAD
 
 
 
@@ -28,5 +29,7 @@ else{
    
    
 
+=======
+>>>>>>> c4bea0e8df229ae4a24aa7c59d50ebf5cfe8f988
 
 ?>

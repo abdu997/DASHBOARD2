@@ -1,19 +1,23 @@
 <?php
 session_start();
 include "php/connection.php";
-include "php/transaction.php";
+// include "php/transaction.php";
 
 if(!isset($_SESSION['name'])){
 header('Location: login.php');
 }
 
-if(isset($_GET['teamname'])){
-    $teamname = $_GET['teamname'];
-    $sql = "SELECT team_id FROM `team` WHERE team_name = '$teamname'";
-    $result2 = mysqli_query($conn, $sql);
-    $row2 = mysqli_fetch_assoc($result2);
-    $team_id = $row2['team_id'];
-}
+// if(isset($_GET['teamname'])){
+//     $teamname = $_GET['teamname'];
+//     $sql = "SELECT team_id FROM `team` WHERE team_name = '$teamname'";
+//     $result2 = mysqli_query($conn, $sql);
+//     $row2 = mysqli_fetch_assoc($result2);
+//     $team_id = $row2['team_id'];
+// }
+
+$user_id = $_SESSION['user_id'];
+$team_id = $_SESSION['team_id'];
+
 
 $tran_sql = "SELECT * FROM `test`.`transaction` WHERE `team_id` = $team_id ORDER BY `timestamp`";
 $tran_result = mysqli_query($conn, $tran_sql);
@@ -54,7 +58,7 @@ $tran_result = mysqli_query($conn, $tran_sql);
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <form onSubmit="php/transaction.php" enctype="multipart/form-data" method="post">
+                        <form id="add_form" onSubmit="php/transaction/addTransaction.php" enctype="multipart/form-data" method="post">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -83,7 +87,7 @@ $tran_result = mysqli_query($conn, $tran_sql);
                                             <label>Amount</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">$</div>
-                                                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control"  placeholder="Amount" id="amount" name="amount" required>
+                                                <input type="number" min="0.01" step="0.01" class="form-control"  placeholder="Amount" id="amount" name="amount" required>
 
                                             </div>
                                         </div>
@@ -100,86 +104,54 @@ $tran_result = mysqli_query($conn, $tran_sql);
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th style="max-width: 20px">ID #</th>
-                                    <th>Debit/Credit</th>
-                                    <th>Person</th>
-                                    <th>Place/Account</th>
-                                    <th>Description</th>
-                                    <th>Date (YMD)</th>
-                                    <th>Amount</th>
-                                    <th>Receipt</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $id_counter = 0;
-                                    $receipt_directory = 'uploads\\receipts\\' . ((string) $team_id);
-                                    while ($row = mysqli_fetch_assoc($tran_result)){
-                                        $id_counter = $id_counter + 1;
-                                        $type = $row['type'];
-                                        $place = $row['place'];
-                                        $desc = $row['description'];
-                                        $date = $row['date'];
-                                        if ($row['amount'] == ''){
-                                            $amount = '$0.00';
-                                        } else {
-                                          $amount = '$' . $row['amount'];
-                                        }
-                                        if ($row['receipt'] !== ''){
-                                            $receipt = $receipt_directory . '\\' .$row['receipt'];
-                                        } else {
-                                            $receipt = NULL;
-                                        }
+                    <div class="col-lg-12" id='table_container'>
 
-                                        $user_id = $row['user_id'];
-                                        $user_sql = "SELECT * FROM `test`.`users` WHERE `idusers` = $user_id ";
-                                        $user_result = mysqli_query($conn, $user_sql);
-                                        $user_row = mysqli_fetch_assoc($user_result);
-                                        $user_name = $user_row['first_name'] . ' ' . $user_row['last_name'];
-                                ?>
-                                <tr>
-                                    <td><?php echo $id_counter ?></td>
-                                    <?php
-                                        if ($type == 'Credit'){
-                                     ?>
-                                            <td><i class="fa fa-minus" style="color: red; padding-right: 5px"></i>Credit</td>
-                                    <?php
-                                        }
-                                        else{
-                                    ?>
-                                            <td><i class="fa fa-plus" style="color: green; padding-right: 5px"></i>Debit</td>
-                                    <?php
-                                        }
-                                    ?>
-                                    <td><?php echo $user_name; ?></td>
-                                    <td><?php echo $place; ?></td>
-                                    <td><?php echo $desc; ?></td>
-                                    <td><?php echo $date; ?></td>
-                                    <td><?php echo $amount; ?></td>
-                                    <?php
-                                        if ($receipt == NULL){
-                                     ?>
-                                            <td><font color="red">No Receipt</font></td>
-                                    <?php
-                                        }
-                                        else{
-                                    ?>
-                                        <td><a href="<?php echo $receipt; ?>" target="_blank">Receipt <?php echo $id_counter; ?></a></td>
-                                    <?php
-                                        }
-                                    ?>
-                                </tr>
-                                <?php
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
+
+                <div id="ModalReceipt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                    				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    				<h4 class="modal-title" id="receipt_title"></h4>
+                    			  </div>
+                            <div class="modal-body text-center">
+                              <a id='receipt_link' href="" target="_blank">
+                                <img class="" id='receipt_image' src="" style="width:100%"/>
+                              </a>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal -->
+
+                <!-- <div id="ModalSuccess" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        				<h4 class="modal-title" id="title">Saved Receipt</h4>
+                    			  </div>
+                            <div class="modal-body text-center">
+                                <p id='type'></p>
+                                <p id='place'></p><br>
+                                <p id='description'></p><br>
+                                <p id='date'></p><br>
+                                <p id='amount'></p><br>
+                                <p id='image_label'></p><br> -->
+                                <!-- <img class="" id='image' src="" style="width:80%"/>
+                            </div>
+                            <div class="modal-footer">
+                                  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
             </div>
             <!-- /.container-fluid -->
 
@@ -191,20 +163,102 @@ $tran_result = mysqli_query($conn, $tran_sql);
 
     <!-- jQuery -->
     <script src="js/w3data.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src='lib/moment.min.js'></script> -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
     <script>
         w3IncludeHTML();
     </script>
     <script>
+        function load_table(){
+            $.ajax({
+                type: "GET",
+                url: "php/transaction/loadTransactions.php",
+                data: {},
+                success: function(html){
+                    $("#table_container").html($(html).filter('#transactionTableWrap').html());
+                    $('#transactionTable').DataTable();
+                    $('#transactionTable').on( 'draw.dt', function() {
+                        $('td a').click(function(e) {
+                            $('#ModalReceipt #receipt_image').prop("src", $(this).attr('data-img-url'));
+                            $('#ModalReceipt #receipt_link').prop("href", $(this).attr('data-img-url'));
+                            $('#ModalReceipt #receipt_title').text($(this).text());
+                            $('#ModalReceipt').modal('show');
+                        });
+                    });
+
+                    $('td a').click(function(e) {
+                        $('#ModalReceipt #receipt_image').prop("src", $(this).attr('data-img-url'));
+                        $('#ModalReceipt #receipt_link').prop("href", $(this).attr('data-img-url'));
+                        $('#ModalReceipt #receipt_title').text($(this).text());
+                        $('#ModalReceipt').modal('show');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    alert(status);
+                    alert(error);
+                },
+            });
+        };
         $(document).ready(function() {
-            $('#example').DataTable();
+            load_table();
+            $("#add_form").on('submit', function(e){
+                e.preventDefault();
+                type = $('#add_form #type').val();
+                place = $('#add_form #place').val();
+                description = $('#add_form #description').val();
+                date = $('#add_form #date').val();
+                amount = $('#add_form #amount').val();
+                $.ajax({
+                    type: "POST",
+                    url: "php/transaction/addTransaction.php",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    // data:{
+                    //     type: type,
+                    //     place: place,
+                    //     description: description,
+                    //     date: date,
+                    //     amount: amount,
+                    //     receipt:  $('#add_form #receipt').val(),
+                    // },
+                    success: function(event){
+                        // alert('Added Transaction')
+                        // alert(type);
+                        // $('#ModalSuccess #type').text(type);
+                        // $('#ModalSuccess #place').val(place);
+                        // $('#ModalSuccess #description').val(description);
+                        // $('#ModalSuccess #date').val(date);
+                        // $('#ModalSuccess #amount').val(amount);
+                        // if(event){
+                        //     $('#ModalSuccess #image_label').val('Image:');
+                        //     $('#ModalSuccess #image').prop("src", event);
+                        // }
+                        // $('#ModalSuccess').modal('show');
+
+                        $('#add_form #place').val(null);
+                        $('#add_form #description').val(null);
+                        $('#add_form #date').val(null);
+                        $('#add_form #amount').val(null)
+                        $('#add_form #receipt').val(null)
+
+                        load_table();
+                        // $('#ModalSuccess').modal('show');
+                    }
+                })
+            });
         });
     </script>
-    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
+
+    <!-- <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js"></script> -->
+
 
 
 </body>

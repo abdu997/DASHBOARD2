@@ -267,7 +267,7 @@ $user_id = $_SESSION['user_id'];
             selectable: true,
             selectHelper: true,
             events: {
-                    url: '/php/calendar/getEvents.php',
+                    url: 'php/calendar/getEvents.php',
                     type: 'GET',
                     data: {
                         type: 'user'

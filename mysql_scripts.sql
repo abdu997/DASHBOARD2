@@ -74,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 
 CREATE TABLE IF NOT EXISTS `calendar` (
 	`id` int(11) NOT NULL auto_increment,
-	`user_id` numeric(11),
-	`team_id` numeric(11),
+	`user_id` int(11),
+	`team_id` int(11),
 	`event` varchar(255),
 	`all_day` varchar(255),
 	`start_date` varchar(30),
@@ -84,6 +84,21 @@ CREATE TABLE IF NOT EXISTS `calendar` (
 	`end_time` varchar(20),
 	`colour` varchar(255),
 	`url` varchar(255),
+	PRIMARY KEY( `id` )
+);
+
+CREATE TABLE IF NOT EXISTS `map` (
+	`id` int(11) NOT NULL auto_increment,
+	`team_id` int(11),
+	`user_id` int(11),
+	`name` varchar(255),
+	`address` varchar(255),
+	`phone` varchar(255),
+	`website` varchar(255),
+	`description` varchar(255),
+	`colour` varchar(20),
+	`lat` varchar(50),
+	`lng` varchar(50),
 	PRIMARY KEY( `id` )
 );
 
