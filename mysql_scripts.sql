@@ -108,3 +108,13 @@ CREATE TABLE IF NOT EXISTS `chatrooms` (
 	`chatroom_name` varchar(255),
 	PRIMARY KEY( `chatroom_id` )
 );
+
+
+CREATE TABLE `test`.`messages` (
+  `messages_id` INT NOT NULL AUTO_INCREMENT,
+  `chatroom_id` INT NULL,
+  `class` VARCHAR(45) NULL,
+  `sender` VARCHAR(45) NULL,
+  `timestamp` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `message` TEXT NULL,
+  PRIMARY KEY (`messages_id`));
