@@ -118,3 +118,16 @@ CREATE TABLE `test`.`messages` (
   `timestamp` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `message` TEXT NULL,
   PRIMARY KEY (`messages_id`));
+
+
+CREATE TABLE `test`.`chatroom_user` (
+  `chatconn_id` INT NOT NULL AUTO_INCREMENT,
+  `chatroom_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`chatconn_id`, `user_id`, `chatroom_id`),
+  INDEX `fk_1_idx` (`chatroom_id` ASC),
+  CONSTRAINT `fk_1`
+    FOREIGN KEY (`chatroom_id`)
+    REFERENCES `test`.`chatrooms` (`chatroom_name`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
