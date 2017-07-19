@@ -114,8 +114,8 @@ w3IncludeHTML();
               console.log("Submit hit");
 		 e.preventDefault();
 		var teamname = $("#t_name").val();
-        console.log(teamname);
-        var email1 = $("#email1").val();
+        if (/\S/.test(teamname)) {
+              var email1 = $("#email1").val();
         var email2 = $("#email2").val();
         var email3 = $("#email3").val();
         var email4 = $("#email4").val();
@@ -139,6 +139,10 @@ w3IncludeHTML();
 							
 						}
 					});
+    
+}
+       
+      
 		
 		
 		  });
