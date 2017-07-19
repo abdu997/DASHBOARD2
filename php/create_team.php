@@ -31,29 +31,38 @@ if(mysqli_query($conn, $sql)){
     $tid = $row['team_id'];
 }
 $uid = $_SESSION['user_id'];
-$sql = "INSERT INTO `team_user` (t_id, u_id, admin) VALUES ($tid,'$uid','Y')";
-mysqli_query($conn, $sql);
+$sql = "INSERT INTO `team_user` (t_id, u_id, admin) VALUES ('$tid','$uid','Y')";
+
+if (!mysqli_query($conn, $sql)) {
+    printf("Errormessage: %s\n", mysqli_error($conn));
+}
 
 
 
 
 
 for ($i = 0; $i < count($email_array); $i++){
-    $email = mysqli_real_escape_string($email_array[$i]);
-    $sql = "SELECT iduser, email FROM `user` WHERE email = '$email_array[$i]'";
-    if(mysqli_num_rows($conn, $sql) == 1){
-        $res = mysqli_query($conn, $sql);
+    $email = mysqli_real_escape_string($conn,$email_array[$i]);
+    $sql = "SELECT idusers, email FROM `users` WHERE email = '$email'";
+   $res = mysqli_query($conn, $sql);
+   
+    if(mysqli_num_rows($res) == 1){
+        
         $row = mysqli_fetch_assoc($res);
-        $uid = $row['iduser'];
-        $sql = "INSERT INTO `team_user` (t_id, u_id, admin) VALUES ($tid,'$uid','N')";
+        $uid = $row['idusers'];
+        $sql = "INSERT INTO `team_user` (t_id, u_id, admin) VALUES ('$tid','$uid','N')";
     }
     else{
-         $sql = "INSERT INTO `confirmation_users` (email,team_id) VALUES ('$email',$tid)";
+         $sql = "INSERT INTO `confirmation_users` (email,team_id) VALUES ('$email','$tid')";
     }
-    
-    if(mysqli_query($conn, $sql)){
+    //echo $sql;
+    if (!mysqli_query($conn, $sql)) {
+    printf("Errormessage: %s\n", mysqli_error($conn));
+}
+    else{
         echo "success";
     }
+
 }
 
 
