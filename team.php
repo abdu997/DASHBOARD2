@@ -69,25 +69,25 @@ $result1 = mysqli_query($conn, $sql);
             <form method="post">
                 <div class="form-group">
         <label>Team Name</label>
-<input id='t_name' class="form-control" required>
+<input id='t_name' name="teamname" class="form-control" required>
     <strong><p>NOTE: The creator of the Team will be assigned the Admin Role (you).</p></strong>
 </div>
 <div class="form-group">
         <label>User Member #1 E-mail</label>
-<input id='email1' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+<input id='email1' name = 'email1' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 </div>
 <div class="form-group">
         <label>User Member #2 E-mail</label>
-<input id='email2' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+<input id='email2' name = 'email2' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 </div>
 <div class="form-group">
         <label>User Member #3 E-mail</label>
-<input id='email3' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+<input id='email3' name = 'email3' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 </div>
 <div class="form-group">
         <label>User Member #4 E-mail</label>
-<input id='email4' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-                <button id="submit" type="button" class="btn btn-default">Submit</button>
+<input id='email4' name = 'email4' class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <button id="submit" type="submit" class="btn btn-default">Submit</button>
 </div>
             </form>
         </div>
@@ -111,7 +111,6 @@ w3IncludeHTML();
     $(document).ready(function(){
 		  
 		  $("#submit").click(function(e) {
-              console.log("Submit hit");
 		 e.preventDefault();
 		var teamname = $("#t_name").val();
         if (/\S/.test(teamname)) {
@@ -136,7 +135,9 @@ w3IncludeHTML();
 							if (html.indexOf("success") >= 0){
 								window.location.reload();
 							}
-							
+							else{
+                                console.log("Something went wrong!");
+                            }
 						}
 					});
     
