@@ -25,6 +25,8 @@ CREATE TABLE `confirmation_users` (
 `email` varchar(150) NOT NULL,
   
 `confirmed` varchar(1) DEFAULT 'N',
+    
+`team_id` INT,
   
 PRIMARY KEY (`idconfirmation_users`),
   
