@@ -31,15 +31,32 @@ if(mysqli_query($conn, $sql)){
     $tid = $row['team_id'];
 }
 $uid = $_SESSION['user_id'];
-$sql = "INSERT INTO `team_user` (t_id, u_id, admin) VALUES ('$tid','$uid','Y')";
+$sql = "INSERT INTO `team_user` (t_id, u_id, admin) VALUES ($tid,'$uid','Y')";
 mysqli_query($conn, $sql);
 
-echo "success";
+
+
+
 
 for ($i = 0; $i < count($email_array); $i++){
     $email = mysqli_real_escape_string($email_array[$i]);
-    $sql = "INSERT INTO `confirmation_users` (email) VALUES ('$email')";
-    mysqli_query($conn, $sql);
+    $sql = "SELECT iduser, email FROM `user` WHERE email = '$email_array[$i]'";
+    if(mysqli_num_rows($conn, $sql) == 1){
+        $res = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($res);
+        $uid = $row['iduser'];
+        $sql = "INSERT INTO `team_user` (t_id, u_id, admin) VALUES ($tid,'$uid','N')";
+    }
+    else{
+         $sql = "INSERT INTO `confirmation_users` (email,team_id) VALUES ('$email',$tid)";
+    }
+    
+    if(mysqli_query($conn, $sql)){
+        echo "success";
+    }
 }
+
+
+
 
 ?>
