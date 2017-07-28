@@ -1,9 +1,72 @@
-<html lang="en" ng-app="ChatSystem" ng-controller="ChatController">
+<html lang="en" ng-app="DashApp" ng-controller="ChatController">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/angular.min.js"></script>
+<script src="js/dash-app.js"></script>
 <link rel="stylesheet"href="css/w3.css">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/jquery.js"></script>
+
+    <script for="modal">
+        // Get the modal
+        var modal = document.getElementById('chatroom_create');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    
+    <script>
+    $.('#sendMsg').submit(function(e){
+        e.preventDefault();
+        formData = {
+            'msg' : $('.message.input').val(),
+            
+        };
+        $.ajax({
+            type: 'POST',
+            url : '',
+            data: formData,
+            dataType: 'json',
+            success: function(data){
+                console.log(data);
+            }
+        })
+        
+    });
+    
+    
+    
+    </script>
+    <script>
+    $.('#chatroom-submit').submit(function(e){
+        e.preventDefault();
+        var mems = new Array();
+        $("input:checkbox[name=chatroom_members]:checked").each(function(){
+            mems.push($(this).innerHTML);
+        });
+        formData = {
+            'chatroomname' : $('#chatroomname').val(),
+            'members': mems
+            };
+        $.ajax({
+            type: 'POST',
+            url : 'chatroom.php',
+            data: formData,
+            dataType: 'json',
+            success: function(data){
+                console.log(data);
+            }
+        })
+        
+    });
+    
+    
+    
+    </script>
 
 <div id="chatroom_create" class="w3-modal">
     <div class="w3-modal-content w3-animate-top w3-card-4" style="padding: 25px; background: #f1f1f1!important">
@@ -18,7 +81,7 @@
                 </p>
                 <div class="checkbox" ng-repeat="x in members">
                     <label>
-                        <input type="checkbox" name="chatroom_members"> {{ x }}
+                        <input type="checkbox" name="chatroom_members"> {{ x.member_name }}
                     </label>
                 </div>
                 <input class="w3-button" type="submit" value="Create" style="background: white; margin-top: 10px">
@@ -131,13 +194,13 @@
                 <div class="search-chat">
                     <input placeholder="Search Chatroom" style="width:200px" ng-model="chatSearch">
                     <ul style="border-bottom: 1px solid white; margin-top: 0px">
-                        <li class="chat" style="margin-top: -16px;" onclick="document.getElementById('chatroom_create').style.display='block'"><i class="fa fa-plus"></i> Add Chatroom
+                        <li class="chat" onclick="document.getElementById('chatroom_create').style.display='block'"><i class="fa fa-plus fa-fw"></i> Add Chatroom
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <ul ng-repeat="x in chatrooms | filter: chatSearch | unique: 'chatroom_name'" style="margin-top: 0px">
-                        <li ng-click='chatRoomMsgs(x.chatroom_id)' id='room' class="chat" style="margin-top: -16px; margin-bottom: -16px;">{{x.chatroom_name}}</li>
+                    <ul ng-repeat="x in chatrooms | filter: chatSearch" style="margin-top: 0px">
+                        <li ng-click='chatRoomMsgs(x.chatroom_id)' id='room' class="chat" style="margin-top: -16px; margin-bottom: -16px; text-transform: capitalize;">{{x.chatroom_name}}</li>
                     </ul>
                 </div>
             </div>
@@ -153,79 +216,20 @@
         <div class="panel-foot">
             <form id = "sendMsg">
                 <input class="message-input" placeholder="Type message here..." required>
-                <input type="submit">
+                <input type="submit" value="Send">
             </form>
         </div>
     </div>
     <!-- /#wrapper -->
-    <script src="js/jquery.js"></script>
-    <script>
+    
+<!--This has to be at the bottom-->
+        <script>
         $("#chat-toggle").click(function(e) {
             e.preventDefault();
             $("#clist").toggleClass("chat-list");
         });
     </script>
-    <script src="js/chat.js"></script>
-    <script for="modal">
-        // Get the modal
-        var modal = document.getElementById('chatroom_create');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
-    
-    <script>
-    $.('#sendMsg').submit(function(e){
-        e.preventDefault();
-        formData = {
-            'msg' : $('.message.input').val(),
-            
-        };
-        $.ajax({
-            type: 'POST',
-            url : '',
-            data: formData,
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-            }
-        })
-        
-    });
-    
-    
-    
-    </script>
-<script>
-    $.('#chatroom-submit').submit(function(e){
-        e.preventDefault();
-        var mems = new Array();
-        $("input:checkbox[name=chatroom_members]:checked").each(function(){
-            mems.push($(this).innerHTML);
-        });
-        formData = {
-            'chatroomname' : $('#chatroomname').val(),
-            'members': mems
-            };
-        $.ajax({
-            type: 'POST',
-            url : 'chatroom.php',
-            data: formData,
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-            }
-        })
-        
-    });
-    
-    
-    
-    </script>
 </body>
+    
 
 </html>

@@ -1,9 +1,11 @@
-<html lang="en" ng-app="ChatSystem" ng-controller="ChatController">
+<html lang="en" ng-app="DashApp" ng-controller="TodoController">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/angular.min.js"></script>
 <link href="css/w3.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/angular.min.js"></script>
+<script src="js/dash-app.js"></script>
 <style>
     /*
     Persona TO DO list
@@ -105,8 +107,8 @@
             <span onclick="newElement()" class="w3-button">Add</span>
         </div>
 
-        <ul id="myUL">
-
+        <ul id="myUL" ng-repeat="x in list">
+            <li class="{{  x.class  }}">{{  x.task  }}</li>
         </ul>
     </div>
     <!-- /#wrapper -->

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include dirname(__FILE__)."../../connection.php";
+
 // $user_id = $_SESSION['user_id'];
 // $team_id = $_SESSION['team_id'];
 $db = 'test';

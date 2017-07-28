@@ -3,7 +3,7 @@
 session_start();
 
 if(!isset($_SESSION[ 'name'])){
-  header( 'Location: login.php');
+  header( 'Location: calendar2.php');
 }
 
 $team_id = $_SESSION['team_id'];
@@ -273,9 +273,8 @@ $user_id = $_SESSION['user_id'];
                     data: {
                         type: 'user_in_team'
                     },
-                    error: function(event) {
-                      alert('There was an error while fetching your team\'s events.');
-                      alert(event.error());
+                    error: function() {
+                      alert('There was an error while fetching your team\'s events.')
                     }
                 },
                 {
